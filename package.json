@@ -1,0 +1,27 @@
+{
+  "name": "fluffy-sniffer",
+  "version": "1.0.0",
+  "description": "Tracks changes on specified websites and notifies user of changes.",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || yarn start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && yarn install",
+    "build": "cd client && yarn run build",
+    "heroku-postbuild": "npm run build"
+},
+  "repository": "https://github.com/novakjason/fluffy-sniffer.git",
+  "author": "Jason Novak <novak.jason7@gmail.com>, Dylan Vavra <vavradylan@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+},
+  "dependencies": {
+    "aws-sdk": "^2.614.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
