@@ -20,6 +20,7 @@ class LoadingMsg extends React.Component {
         return (
             <div>
                 <h1 style={{ textAlign: "center", margin:"20px auto" }}>Loading...</h1>
+                <br></br>
                 <div className="loading">
                     <FadeLoader
                         css={override}

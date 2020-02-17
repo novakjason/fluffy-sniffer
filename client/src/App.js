@@ -31,6 +31,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route component={NotFound} />
             <Route onEnter={requireLogin} >
               <Route path="/app"
                 render={({ match: { path } }) => (
@@ -41,7 +42,6 @@ class App extends React.Component {
                 }
               />
             </Route>
-            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>
