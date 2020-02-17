@@ -1,0 +1,24 @@
+.navbar {
+    background: #000;
+}
+
+
+.navbar-brand {
+    color: #FFF;
+}
+
+.app-name   {
+    font-size: 150%;
+    color: #777;
+}
+
+a   {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #777
+}
