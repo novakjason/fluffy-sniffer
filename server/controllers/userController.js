@@ -21,9 +21,11 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
-        db.User
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
+        db.User.findOne({ username: req.body.username })
+            .then(data => {
+                if (data) { res.json({ error: `User "${username}" already exists!` }) }
+                else { db.User.create(req.body).then(data => res.json(data)) }
+            })
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
