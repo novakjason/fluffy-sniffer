@@ -10,8 +10,8 @@ router.use('/api', apiRoutes);
 router.use('/auth', authRoutes);
 
 // If no API routes are hit, use the React app client front end.
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+router.use(function (req, res) {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 module.exports = router;
