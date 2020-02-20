@@ -28,11 +28,10 @@ userSchema.methods = {
 // Define hooks for pre-saving
 userSchema.pre('save', function (next) {
     if (!this.password) {
-        console.log('------MISSING PASSWORD------');
+        console.log('🌎  ==> MISSING PASSWORD');
         next();
     } else {
-        console.log('------PASSWORD HASHED------');
-
+        console.log('🌎  ==> PASSWORD HASHED');
         this.password = this.hashPassword(this.password);
         next();
     }
