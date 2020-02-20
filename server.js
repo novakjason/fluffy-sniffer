@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 
 // Express and MongoDB integration
 const sess = {
-    secret: 'All right! Bonsai, bakchoy, wiseguy, waterboy! Light shines bright in the old town tonight!',
+    secret: ['bonsai, bakchoy, wiseguy, waterboy'],
     store: new MongoStore({ mongooseConnection: dbConnection }),
     cookie: {},
     resave: false,
