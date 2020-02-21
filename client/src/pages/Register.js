@@ -9,7 +9,23 @@ class Register extends React.Component {
 
     state = {
         username: "",
-        password: ""
+        password: "",
+        redirect: false,
+        newAccount: false,
+    };
+    
+    // Used to redirect user to Login page after registering user.
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return (
+                <Redirect
+                    to={{
+                        pathname: '/',
+                        state: { newAccount: true },
+                    }}
+                />
+            );
+        }
     };
 
     handleInputChange = event => {
@@ -28,11 +44,20 @@ class Register extends React.Component {
             username: this.state.username,
             password: this.state.password
         })
-            .then(newUser => {
-                console.log(newUser);
-                API.loginUser(newUser)
+            .then(response => {
+                console.log(`Welcome ${response.data.username}! Your new account has been created!`);
+                console.log(response);
+                if (response.status === 200) {
+                    this.setState({
+                        redirect: true,
+                        newAccount: true,
+                    });
+                }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log('ERROR:');
+                console.log(err);
+            });
     }
 
     checkLoginStatus = () => {
@@ -56,11 +81,11 @@ class Register extends React.Component {
     componentDidMount() {
         // Show the page after a 1s load phase
         setTimeout(() => {
-          this.setState({
-            loaded: true
-          })
+            this.setState({
+                loaded: true
+            })
         }, 1000)
-      }
+    }
 
     render() {
 
@@ -69,7 +94,6 @@ class Register extends React.Component {
         if (!this.state.loaded) {
             return (<LoadSpinner />)
         }
-
 
         if (this.state.loaded && this.state.user) {
             return (
@@ -100,13 +124,11 @@ class Register extends React.Component {
                     </Col>
                     <Col size="md-3" />
                 </Row>
+                {/* After new user is created, user is directed to Login page */}
+                {this.renderRedirect()}
             </Container>
         )
     }
-
-
-
-
 }
 
 export default Register;

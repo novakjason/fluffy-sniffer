@@ -32,10 +32,10 @@ export default {
         return axios.post("/api/users/register", userData)
     },
     // UPDATE a User with the given id
-    updateThisUser: function (id, UserData) {
-        return axios.put("/api/users/" + id, UserData)
+    updateThisUser: function (id, userData) {
+        return axios.put("/api/users/" + id, userData)
     },
-    // DELETE (destroy) a User with the given id
+    // DELETE a User with the given id
     deleteThisUser: function (id) {
         return axios.delete("api/users/" + id);
     }
