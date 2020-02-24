@@ -13,12 +13,12 @@ router.route('/').get((req, res, next) => {
 
 // Matches POST /auth/user/login
 router.route('/login').post((req, res, next) => {
-    console.log('🌎  ==> Authenticating user: ', req.body.username);
+    console.log('🌎  ==> Authenticating user: ', req.body.email);
     next();
 }, passport.authenticate('local'), (req, res) => {
-    console.log('🌎  ==> Welcome ' + req.user.username + '! Login Successful');
+    console.log('🌎  ==> Welcome ' + req.user.email + '! Login Successful');
     let userData = {
-        username: req.user.username,
+        email: req.user.email,
     };
     res.send(userData);
 });
