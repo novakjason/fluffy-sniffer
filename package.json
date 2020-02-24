@@ -1,16 +1,19 @@
 {
   "name": "fluffy-sniffer",
   "version": "1.0.0",
+  "engines": {
+    "yarn": "2.0.0"
+  },
   "description": "Tracks changes on specified websites and notifies user of changes.",
   "main": "server.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || yarn start:dev",
+    "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "install": "cd client && yarn install",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn client\"",
+    "client": "cd client && yarn start",
+    "install": "cd client && yarn",
     "build": "cd client && yarn run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "yarn run build"
   },
   "repository": "https://github.com/novakjason/fluffy-sniffer.git",
   "author": "Jason Novak <novak.jason7@gmail.com>, Dylan Vavra <vavradylan@gmail.com>",
@@ -33,6 +36,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "react-router-dom": "^5.1.2",
-    "react-spinners": "^0.8.0"
+    "react-spinners": "^0.8.0",
+    "validator": "^12.2.0"
   }
 }
