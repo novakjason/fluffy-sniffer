@@ -13,12 +13,12 @@ router.route('/').get((req, res, next) => {
 
 // Matches POST /auth/user/login
 router.route('/login').post((req, res, next) => {
-    console.log(`login, req.body: ${req.body}`);
+    console.log('🌎  ==> Authenticating user: ', req.body.email);
     next();
 }, passport.authenticate('local'), (req, res) => {
-    console.log('logged in', req.user);
+    console.log('🌎  ==> Welcome ' + req.user.email + '! Login Successful');
     let userData = {
-        username: req.user.username,
+        email: req.user.email,
     };
     res.send(userData);
 });
@@ -27,9 +27,9 @@ router.route('/login').post((req, res, next) => {
 router.route('/logout').post((req, res, next) => {
     if (req.user) {
         req.logout();
-        res.send({ msg: 'logging out' });
+        res.send({ msg: '🌎  ==> Logging out!' });
     } else {
-        res.send({ msg: 'no user to logout' });
+        res.send({ msg: '🌎  ==> No user to logout!' });
     }
 });
 
