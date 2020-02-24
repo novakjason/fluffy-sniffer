@@ -1,21 +1,39 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const validator = require('validator')
 
-const userSchema = new Schema({
-    username: {
+// Defining the User Schema
+const userSchema = new mongoose.Schema({
+    firstName: {
         type: String,
         required: true,
-        unique: true
+        unique: false,
+    },
+    lastName: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        // Using validator.js library to validate email address
+        validate: (value) => {
+            return validator.isEmail(value)
+        }
     },
     password: {
         type: String,
         required: true,
-        unique: false
+        unique: false,
+        min: [6, 'Password must be at least 6 characters'],
+        max: 24,
     },
 });
 
-// Define schema methods
+// Defining Schema methods for password hashing using bcrypt libary
 userSchema.methods = {
     checkPassword: function (inputPassword) {
         return bcrypt.compareSync(inputPassword, this.password);
@@ -25,7 +43,7 @@ userSchema.methods = {
     }
 }
 
-// Define hooks for pre-saving
+// Defining pre-save middleware function to use Schema methods to hash password before saving to database
 userSchema.pre('save', function (next) {
     if (!this.password) {
         console.log('🌎  ==> MISSING PASSWORD');
