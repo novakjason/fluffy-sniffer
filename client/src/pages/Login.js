@@ -8,7 +8,7 @@ import API from "../utils/API";
 class Login extends React.Component {
 
     state = {
-        username: "",
+        email: "",
         password: "",
         loaded: false
     }
@@ -40,16 +40,15 @@ class Login extends React.Component {
 
     handleLoginAttempt = (event) => {
         event.preventDefault();
-        if (!this.state.username || !this.state.password) {
+        if (!this.state.email || !this.state.password) {
             return;
         }
         API.userLogin({
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         }).then(data => {
             console.log(data);
             if (data.status === 200) {
-                console.log(data);
                 this.setState({
                     loggedIn: true
                 })
@@ -91,13 +90,13 @@ class Login extends React.Component {
                 <Row className="max-width: 900px; margin:auto;">
                     <Col size="md-3" />
                     <Col size="md-6">
-                        <h1 className="text-center mb-3" style={{marginTop:20}}><i className="fas fa-sign-in-alt" style={{marginRight: "15px"}}></i>Login</h1>
+                        <h1 className="text-center mb-3" style={{ marginTop: 20 }}><i className="fas fa-sign-in-alt" style={{ marginRight: "15px" }}></i>Login</h1>
                         <form className="login">
                             <Input
                                 type="input"
-                                id="username-input"
-                                label="Username"
-                                name="username"
+                                id="email-input"
+                                label="Email"
+                                name="email"
                                 className="form-control"
                                 onChange={this.handleInputChange}
                                 placeholder="Enter Email"
