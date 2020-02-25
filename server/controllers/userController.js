@@ -21,9 +21,9 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
-        db.User.findOne({ username: req.body.username })
+        db.User.findOne({ username: req.body.email })
             .then(data => {
-                if (data) { res.json({ error: `User "${username}" already exists!` }) }
+                if (data) { res.json({ error: `"${username}" is already in use! Please use a different email address.` }) }
                 else { db.User.create(req.body).then(data => res.json(data)) }
             })
             .catch(err => res.status(422).json(err));
