@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.27",
-    "aws-sdk": "^2.614.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.19.2",
     "bcrypt": "^3.0.8",
     "connect-mongo": "^3.2.0",
